@@ -245,6 +245,12 @@
                         "FromPort": "22",
                         "ToPort": "22",
                         "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "24864",
+                        "ToPort": "24864",
+                        "CidrIp": "0.0.0.0/0"
                     }
                 ]
             }

@@ -28,6 +28,10 @@ alias infrakit='docker run --rm {{$dockerMounts}} {{$dockerEnvs}} {{$dockerImage
 
 
 echo "Starting up infrakit"
+docker run -d --restart always --name mux -p 24864:24864 \
+       {{$dockerMounts}} {{$dockerEnvs}} {{$dockerImage}} \
+       infrakit util mux --log 5
+
 docker run -d --restart always --name manager \
        {{$dockerMounts}} {{$dockerEnvs}} {{$dockerImage}} \
        infrakit-manager --name group  --proxy-for-group group-stateless swarm
