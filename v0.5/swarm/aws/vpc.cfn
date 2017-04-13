@@ -406,7 +406,7 @@
                             {
                                 "Fn::FindInMap": [ "AMISelector", { "Ref" : "PreinstalledDockerAMI" }, "userdata" ]
                             },
-                            "docker run --rm infrakit/devbundle:dev infrakit template --url ",
+                            "docker run --rm infrakit/devbundle:dev infrakit template ",
                                {"Ref":"InfrakitConfigRoot"}, "/boot.sh",
                                " --var /cluster/name=", {"Ref":"AWS::StackName"},
                                " --var /cluster/swarm/size=", {"Ref":"ClusterSize"},

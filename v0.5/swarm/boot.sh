@@ -21,7 +21,7 @@ set -o xtrace
 mkdir -p /etc/docker
 cat << EOF > /etc/docker/daemon.json
 {
-  "labels": {{ $dockerLabels | to_json }}
+  "labels": {{ $dockerLabels | jsonEncode }}
 }
 EOF
 kill -s HUP $(cat /var/run/docker.pid)  {{/* Reload the engine labels */}}
