@@ -32,6 +32,11 @@ docker run -d --restart always --name mux -p 24864:24864 \
        {{$dockerMounts}} {{$dockerEnvs}} {{$dockerImage}} \
        infrakit util mux --log 5
 
+echo "Starting up timer plugin"
+docker run -d --restart always --name time \
+       {{$dockerMounts}} {{$dockerEnvs}} {{$dockerImage}} infrakit-event-time
+
+echo "Starting up manager"
 docker run -d --restart always --name manager \
        {{$dockerMounts}} {{$dockerEnvs}} {{$dockerImage}} \
        infrakit-manager --name group  --proxy-for-group group-stateless swarm
@@ -51,6 +56,7 @@ docker run -d --restart always --name instance-plugin \
 echo "Starting up metadata plugin"
 docker run -d --restart always --name metadata \
        {{$dockerMounts}} {{$dockerEnvs}} {{$metadataImage}} {{$metadataCmd}}
+
 
 # Need a bit of time for the leader to discover itself
 sleep 10
